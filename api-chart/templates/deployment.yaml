@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: {{ .Values.labels.app }}-deployment
+  labels:
+    app: {{ .Values.labels.app }}
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.labels.app }}
+
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.labels.app }}
+
+    spec:
+
+      volumes:
+      - name: tmp
+        emptyDir: {}
+
+      containers:
+      - name: {{ .Values.labels.app }}-container
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+
+        envFrom:
+        - secretRef:
+            name: {{ .Values.envSecretName }}
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.livenessProbe.httpGet.port }}
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.readinessProbe.httpGet.port }}
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+
+        securityContext:
+          runAsNonRoot: {{ .Values.securityContext.runAsNonRoot }}
+          runAsUser: {{ .Values.securityContext.runAsUser }}
+          runAsGroup: {{ .Values.securityContext.runAsGroup }}
+          allowPrivilegeEscalation: {{ .Values.securityContext.allowPrivilegeEscalation }}
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - NET_BIND_SERVICE
+          readOnlyRootFilesystem: {{ .Values.securityContext.readOnlyRootFilesystem }}
+
+        ports:
+        - containerPort: {{ .Values.service.targetPort }}
+          protocol: TCP

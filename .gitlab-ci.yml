@@ -1,0 +1,81 @@
+stages:
+  - build
+  - sast
+  - docker
+  - security
+  - report
+
+variables:
+  DOCKER_IMAGE: jre_alpine-imagev4:latest
+
+
+maven-build:
+  stage: build
+  tags:
+    - shell
+  script:
+    - echo "=== Maven Build ==="
+    - mvn clean package -DskipTests
+    - echo "Build completed"
+
+
+semgrep-scan:
+  stage: sast
+  tags:
+    - shell
+  script:
+    - echo "=== Semgrep SAST ==="
+    - semgrep --config auto --json --output semgrep-report.json . || true
+    - echo "SAST completed"
+  artifacts:
+    paths:
+      - semgrep-report.json
+    expire_in: 1 week
+  allow_failure: true
+
+
+docker-build:
+  stage: docker
+  tags:
+    - shell
+  script:
+    - echo "=== Docker Build ==="
+    - docker build -t $DOCKER_IMAGE .
+    - echo "Docker image built"
+  dependencies:
+    - maven-build
+
+
+trivy-scan:
+  stage: security
+  tags:
+    - shell
+  script:
+    - echo "=== Trivy Security Scan ==="
+    - trivy image --severity HIGH,CRITICAL --format json --output trivy-report.json $DOCKER_IMAGE || true
+    - echo "Security scan completed"
+  artifacts:
+    paths:
+      - trivy-report.json
+    expire_in: 1 week
+  allow_failure: true
+
+
+generate-report:
+  stage: report
+  tags:
+    - shell
+  script:
+    - echo === Semgrep report ===
+    - python3 parse_semgrep.py semgrep-report.json --save-log
+    - echo === Trivy report ===
+    - python3 parse_trivy.py trivy-report.json --save-log
+
+  artifacts:
+    paths:
+      - logs/
+    expire_in: 1 month
+
+  dependencies:
+    - semgrep-scan
+    - trivy-scan

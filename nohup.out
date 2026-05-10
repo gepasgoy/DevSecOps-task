@@ -1,0 +1,88 @@
+Warning: JAVA_HOME environment variable is not set.
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.jkaninda:simple-api >-----------------------
+[INFO] Building simple-api 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.5:run (default-cli) > test-compile @ simple-api >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ simple-api ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ simple-api ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ simple-api ---
+[INFO] skip non existing resourceDirectory /home/leikart/test_task/book-api/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ simple-api ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot:3.2.5:run (default-cli) < test-compile @ simple-api <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.5:run (default-cli) @ simple-api ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-05T12:05:00.479Z  INFO 2607 --- [simple-api] [           main] c.j.simpleapi.SimpleApiApplication       : Starting SimpleApiApplication using Java 17.0.18 with PID 2607 (/home/leikart/test_task/book-api/target/classes started by leikart in /home/leikart/test_task/book-api)
+2026-05-05T12:05:00.482Z  INFO 2607 --- [simple-api] [           main] c.j.simpleapi.SimpleApiApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-05-05T12:05:01.180Z  INFO 2607 --- [simple-api] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-05-05T12:05:01.181Z  INFO 2607 --- [simple-api] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-05-05T12:05:01.262Z  INFO 2607 --- [simple-api] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 73 ms. Found 2 Redis repository interfaces.
+2026-05-05T12:05:01.556Z  INFO 2607 --- [simple-api] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-05T12:05:01.563Z  INFO 2607 --- [simple-api] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-05T12:05:01.563Z  INFO 2607 --- [simple-api] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-05T12:05:01.595Z  INFO 2607 --- [simple-api] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-05T12:05:01.595Z  INFO 2607 --- [simple-api] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1068 ms
+2026-05-05T12:05:02.481Z  INFO 2607 --- [simple-api] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2026-05-05T12:05:02.527Z  INFO 2607 --- [simple-api] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-05-05T12:05:02.541Z  INFO 2607 --- [simple-api] [           main] c.j.simpleapi.SimpleApiApplication       : Started SimpleApiApplication in 2.305 seconds (process running for 2.575)
+2026-05-05T12:05:02.568Z  INFO 2607 --- [simple-api] [           main] com.jkaninda.simpleapi.seed.AppRunner    : Seed::  Database seed on boot is disabled
+2026-05-05T12:08:54.101Z  INFO 2607 --- [simple-api] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-05T12:08:54.102Z  INFO 2607 --- [simple-api] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-05T12:08:54.103Z  INFO 2607 --- [simple-api] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-05T12:08:54.124Z  INFO 2607 --- [simple-api] [nio-8080-exec-1] c.j.s.service.impl.SimpleApiServiceImpl  : API Path: / || Home page 
+2026-05-05T12:09:13.661Z  INFO 2607 --- [simple-api] [nio-8080-exec-4] c.j.s.service.impl.SimpleApiServiceImpl  : API Path: / || Home page 
+2026-05-05T12:09:13.741Z  INFO 2607 --- [simple-api] [nio-8080-exec-3] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x07O0x010x000x07K0x030x030xc5)0x84n0x800xbeQ0x060x850xa90xbe0xc90xa00xac)0xfe0xb00x11"0x050xc3y0xbb0xf2<_.0x0f0xc80x1e0x1e0x8c ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:407) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-05-05T12:10:00.004Z  INFO 2607 --- [simple-api] [   scheduling-1] c.jkaninda.simpleapi.cron.SimpleCronJob  : CronJob:: I'm a Springboot cronJob, and I'm running at every 5 minutes
+2026-05-05T12:15:00.000Z  INFO 2607 --- [simple-api] [   scheduling-1] c.jkaninda.simpleapi.cron.SimpleCronJob  : CronJob:: I'm a Springboot cronJob, and I'm running at every 5 minutes
+2026-05-05T12:20:00.006Z  INFO 2607 --- [simple-api] [   scheduling-1] c.jkaninda.simpleapi.cron.SimpleCronJob  : CronJob:: I'm a Springboot cronJob, and I'm running at every 5 minutes
+2026-05-05T12:25:00.000Z  INFO 2607 --- [simple-api] [   scheduling-1] c.jkaninda.simpleapi.cron.SimpleCronJob  : CronJob:: I'm a Springboot cronJob, and I'm running at every 5 minutes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  22:54 min
+[INFO] Finished at: 2026-05-05T12:27:53Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.5:run (default-cli) on project simple-api: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

@@ -1,0 +1,29 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ .Values.labels.app }}-policy
+spec:
+  endpointSelector:
+    matchLabels:
+      app: {{ .Values.labels.app }}
+
+  ingress:
+  - fromEntities: #я решил оставить кластер, но если бы с апи шёл клиент, то я бы дал доступ только к нему + использовал бы ingress controller на клиента, если нужны входящие подключения из общей сети
+    - cluster
+    toPorts:
+    - ports:
+      - port: "8080"
+        protocol: TCP
+
+  egress:
+  - toEndpoints:
+    - matchLabels:
+        k8s-app: kube-dns
+    toPorts:
+    - ports:
+      - port: "53"
+        protocol: UDP
+      - port: "53"
+        protocol: TCP
+
+

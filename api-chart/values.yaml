@@ -1,0 +1,43 @@
+replicaCount: 2
+
+labels:
+  app: api-alpine
+
+image:
+  repository: jre_alpine-imagev4
+  tag: latest
+  pullPolicy: Never
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 8080
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "400m"
+    memory: "512Mi"
+
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+
+envSecretName: app-env
+
+livenessProbe:
+  httpGet:
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 5
